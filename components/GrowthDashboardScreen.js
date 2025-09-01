@@ -1,20 +1,6 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Svg, { Path, Circle, Polyline, Text as SvgText } from 'react-native-svg';
-
-const JournalIcon = () => (
-  <Svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-    <Path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-    <Path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-  </Svg>
-);
-
-const TrophyIcon = () => (
-  <Svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-    <Path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    <Path d="M8 11l2 2 4-4" />
-  </Svg>
-);
+import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
+import Svg, { Circle, Polyline, Text as SvgText } from 'react-native-svg';
 
 const BadgeIcon = ({ achieved, color, name }) => (
   <View style={styles.badgeItem}>

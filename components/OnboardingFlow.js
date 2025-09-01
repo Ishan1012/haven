@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Animated, Image } from 'react-native';
 import Svg, { Path, Polygon } from 'react-native-svg';
 
 const GoogleIcon = () => (
@@ -30,9 +30,10 @@ const SplashScreen = ({ onFinish }) => {
 
     return (
         <Animated.View style={[styles.screen, styles.centerContent, { opacity: fadeAnim }]}>
-            <Svg height="120" width="120" viewBox="0 0 100 100">
-                <Path d="M50 90 C50 70, 80 60, 80 40 C80 20, 50 10, 50 30 C50 50, 20 60, 20 80 C20 100, 50 110, 50 90 Z" stroke="#A3B899" strokeWidth="3" fill="none" />
-            </Svg>
+            <Image
+                source={require('../assets/icon.png')}
+                style={styles.image}
+            />
             <Text style={styles.tagline}>Your personalized path to mental wellness.</Text>
         </Animated.View>
     );
@@ -70,7 +71,7 @@ const PersonalizationScreen = ({ onNext }) => {
         <View style={[styles.screen, styles.centerContent]}>
             {step === 'language' ? (
                 <View style={styles.card}>
-                    <Text style={styles.headline}>Let’s make this your own.</Text>
+                    <Text style={styles.headline}>Let's make this your own.</Text>
                     <Text style={styles.subtext}>Choose the languages you're comfortable with.</Text>
                     <View style={styles.tagContainer}>
                         {['English', 'Hindi', 'Bengali', 'Tamil'].map(lang => (
@@ -155,8 +156,8 @@ const WellnessPlanScreen = ({ onNext }) => (
     <View style={[styles.screen, styles.centerContent]}>
         <View style={{ alignItems: 'center' }}>
             <PlantIcon />
-            <Text style={styles.headline}>Here’s your tailored plan.</Text>
-            <Text style={styles.subtext}>Based on your responses, we&apos;ve created a personalized journey for you.</Text>
+            <Text style={styles.headline}>Here's your tailored plan.</Text>
+            <Text style={styles.subtext}>Based on your responses, we've created a personalized journey for you.</Text>
             <View style={[styles.tagContainer, { justifyContent: 'center', marginVertical: 20 }]}>
                 <View style={styles.tagStatic}><Text style={styles.tagStaticText}>Managing Stress</Text></View>
                 <View style={styles.tagStatic}><Text style={styles.tagStaticText}>Mindful Moments</Text></View>
@@ -182,7 +183,7 @@ const OnboardingFlow = ({ onFinish }) => {
             case 'SCREENING':
                 return <ScreeningScreen onNext={() => setStep('PLAN')} />;
             case 'PLAN':
-                return <WellnessPlanScreen onNext={onFinish} />;
+                return <WellnessPlanScreen onNext={() => onFinish()} />;
             default:
                 return <SplashScreen onFinish={() => setStep('LOGIN')} />;
         }
@@ -194,6 +195,7 @@ const OnboardingFlow = ({ onFinish }) => {
 const styles = StyleSheet.create({
     appContainer: { flex: 1, backgroundColor: '#FBF9F6' },
     screen: { flex: 1, width: '100%', height: '100%' },
+    image: { width: 250, height: 250, resizeMode: 'contain' },
     centerContent: { alignItems: 'center', justifyContent: 'center', padding: 20 },
     tagline: { marginTop: 24, fontSize: 18, color: '#3C3C3C', textAlign: 'center', paddingHorizontal: 40, lineHeight: 27 },
     card: { backgroundColor: 'white', borderRadius: 20, padding: 25, width: '100%', maxWidth: 380, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.05, shadowRadius: 10, elevation: 5 },

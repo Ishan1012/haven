@@ -4,32 +4,32 @@ import OnboardingFlow from './components/OnboardingFlow';
 import HomeDashboard from './components/HomeDashboard';
 import AIChatbotScreen from './components/AIChatbotScreen';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import LearningHubScreen from './components/LearningHubScreen';
 import PeerCommunityScreen from './components/PeerCommunityScreen';
 import BookingScreen from './components/BookingScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [isOnboarded, setIsOnboarded] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <NavigationContainer>
       {isOnboarded ? (
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Home" component={HomeDashboard} />
-            <Stack.Screen name="Chatbot" component={AIChatbotScreen} />
-            <Stack.Screen name="Learning" component={LearningHubScreen} />
-            <Stack.Screen name="Community" component={PeerCommunityScreen} />
-            <Stack.Screen name="Booking" component={BookingScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={HomeDashboard} />
+          <Stack.Screen name="Chatbot" component={AIChatbotScreen} />
+          <Stack.Screen name="Learning" component={LearningHubScreen} />
+          <Stack.Screen name="Community" component={PeerCommunityScreen} />
+          <Stack.Screen name="Booking" component={BookingScreen} />
+        </Stack.Navigator>
       ) : (
-        <OnboardingFlow onFinish={() => setIsOnboarded(true)} />
-      )} 
-    </SafeAreaView>
+        <SafeAreaView style={styles.container}>
+          <OnboardingFlow onFinish={() => setIsOnboarded(true)} />
+        </SafeAreaView>
+      )}
+    </NavigationContainer>
   );
 }
 

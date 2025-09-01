@@ -1,9 +1,6 @@
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import Svg, { Path, Circle } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
 import GrowthDashboardScreen from './GrowthDashboardScreen';
-
-const { width } = Dimensions.get('window');
 
 const ChatbotIcon = () => (
     <Svg width={28} height={28} viewBox="0 0 24 24" fill="none" stroke="#3C3C3C" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -27,9 +24,7 @@ const JournalIcon = () => (
     </Svg>
 );
 
-const HomeDashboard = () => {
-    const navigation = useNavigation();
-
+const HomeDashboard = ({ navigation }) => {
     return (
         <View style={styles.safeArea}>
             <ScrollView contentContainerStyle={styles.container}>
@@ -99,10 +94,6 @@ const styles = StyleSheet.create({
         padding: 20,
         marginBottom: 20,
         elevation: 2,
-        shadowColor: '#000',
-        shadowOpacity: 0.05,
-        shadowOffset: { width: 0, height: 4 },
-        shadowRadius: 6,
     },
     cardTitle: {
         fontSize: 18,
