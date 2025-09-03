@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, ScrollView, StyleSheet, Modal } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'; // Expo supports this out of the box
+import Icon from 'react-native-vector-icons/Ionicons';
 
-// --- Mock Data ---
 const counselors = [
   { id: 'c1', name: 'Dr. Anya Sharma', specialty: 'Stress & Anxiety' },
   { id: 'c2', name: 'Rohan Verma', specialty: 'Burnout & Motivation' },
@@ -142,49 +141,190 @@ const BookingScreen = () => {
   );
 };
 
-// --- Styles ---
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#FBF9F6' },
-  container: { padding: 20, paddingBottom: 100 },
-  headerTitle: { fontSize: 28, fontWeight: 'bold', color: '#3C3C3C', textAlign: 'center', marginVertical: 20 },
-
-  triggerBanner: { backgroundColor: '#FAD6A5', borderRadius: 12, padding: 15, marginBottom: 20, borderWidth: 1, borderColor: '#D97706' },
-  triggerText: { color: '#92400E', textAlign: 'center' },
-
-  tabContainer: { flexDirection: 'row', backgroundColor: '#F0F0F0', borderRadius: 12, padding: 4, marginBottom: 25 },
-  tabButton: { flex: 1, paddingVertical: 12, borderRadius: 8, alignItems: 'center' },
-  tabButtonActive: { backgroundColor: '#FFFFFF', elevation: 3 },
-  tabText: { fontSize: 14, fontWeight: '500', color: '#555' },
-  tabTextActive: { color: '#A3B899', fontWeight: 'bold' },
-
-  card: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 20, marginBottom: 20, elevation: 2 },
-  cardTitle: { fontSize: 18, fontWeight: '600', marginBottom: 15, color: '#3C3C3C' },
-
-  counselorHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 15 },
-  counselorName: { fontSize: 16, fontWeight: '600', color: '#3C3C3C' },
-  counselorSpecialty: { fontSize: 14, color: '#555' },
-
-  slotsTitle: { fontSize: 14, fontWeight: '500', color: '#555', marginBottom: 10 },
-  slotsContainer: { flexDirection: 'row', flexWrap: 'wrap' },
-  slotButton: { backgroundColor: '#E8F0E5', paddingVertical: 10, paddingHorizontal: 15, borderRadius: 8, margin: 5 },
-  slotButtonText: { color: '#59784D', fontSize: 14, fontWeight: '500' },
-
-  helplineText: { fontSize: 15, color: '#555', lineHeight: 20, marginBottom: 20 },
-  primaryButton: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: '#A3B899', borderRadius: 10, paddingVertical: 14, marginTop: 10 },
-  primaryButtonText: { color: '#fff', fontSize: 16, fontWeight: '600', marginLeft: 8 },
-
-  fab: { position: 'absolute', bottom: 20, right: 20, backgroundColor: '#A3B899', width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', elevation: 6 },
-
-  modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
-  modalContent: { backgroundColor: '#fff', borderRadius: 16, padding: 25, width: '85%' },
-  closeButton: { position: 'absolute', top: 10, right: 10 },
-
-  modalTitle: { fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginBottom: 10, color: '#3C3C3C' },
-  modalText: { textAlign: 'center', color: '#555', marginBottom: 20 },
-
-  summaryCard: { backgroundColor: '#F9FAFB', borderRadius: 8, padding: 15, marginBottom: 20, borderWidth: 1, borderColor: '#E5E7EB' },
-  summaryTitle: { fontSize: 14, fontWeight: '600', marginBottom: 8, color: '#3C3C3C' },
-  summaryText: { fontSize: 14, color: '#555', marginBottom: 6 },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FBF9F6'
+  },
+  container: {
+    padding: 20,
+    paddingBottom: 100
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#3C3C3C',
+    textAlign: 'center',
+    marginVertical: 20
+  },
+  triggerBanner: {
+    backgroundColor: '#FAD6A5',
+    borderRadius: 12,
+    padding: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#D97706'
+  },
+  triggerText: {
+    color: '#92400E',
+    textAlign: 'center'
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#F0F0F0',
+    borderRadius: 12,
+    padding: 4,
+    marginBottom: 25
+  },
+  tabButton: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center'
+  },
+  tabButtonActive: {
+    backgroundColor: '#FFFFFF',
+    elevation: 3
+  },
+  tabText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#555'
+  },
+  tabTextActive: {
+    color: '#A3B899',
+    fontWeight: 'bold'
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 20,
+    elevation: 2
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 15,
+    color: '#3C3C3C'
+  },
+  counselorHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15
+  },
+  counselorName: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#3C3C3C'
+  },
+  counselorSpecialty: {
+    fontSize: 14,
+    color: '#555'
+  },
+  slotsTitle: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#555',
+    marginBottom: 10
+  },
+  slotsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  slotButton: {
+    backgroundColor: '#E8F0E5',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    margin: 5
+  },
+  slotButtonText: {
+    color: '#59784D',
+    fontSize: 14,
+    fontWeight: '500'
+  },
+  helplineText: {
+    fontSize: 15,
+    color: '#555',
+    lineHeight: 20,
+    marginBottom: 20
+  },
+  primaryButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#A3B899',
+    borderRadius: 10,
+    paddingVertical: 14,
+    marginTop: 10
+  },
+  primaryButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 8
+  },
+  fab: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    backgroundColor: '#A3B899',
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 6
+  },
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    padding: 25,
+    width: '85%'
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+    color: '#3C3C3C'
+  },
+  modalText: {
+    textAlign: 'center',
+    color: '#555',
+    marginBottom: 20
+  },
+  summaryCard: {
+    backgroundColor: '#F9FAFB',
+    borderRadius: 8,
+    padding: 15,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#E5E7EB'
+  },
+  summaryTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 8,
+    color: '#3C3C3C'
+  },
+  summaryText: {
+    fontSize: 14,
+    color: '#555',
+    marginBottom: 6
+  },
 });
 
 export default BookingScreen;

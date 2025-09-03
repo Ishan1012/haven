@@ -193,39 +193,212 @@ const OnboardingFlow = ({ onFinish }) => {
 };
 
 const styles = StyleSheet.create({
-    appContainer: { flex: 1, backgroundColor: '#FBF9F6' },
-    screen: { flex: 1, width: '100%', height: '100%' },
-    image: { width: 250, height: 250, resizeMode: 'contain' },
-    centerContent: { alignItems: 'center', justifyContent: 'center', padding: 20 },
-    tagline: { marginTop: 24, fontSize: 18, color: '#3C3C3C', textAlign: 'center', paddingHorizontal: 40, lineHeight: 27 },
-    card: { backgroundColor: 'white', borderRadius: 20, padding: 25, width: '100%', maxWidth: 380, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.05, shadowRadius: 10, elevation: 5 },
-    headline: { fontSize: 24, fontWeight: 'bold', color: '#3C3C3C', marginBottom: 10, textAlign: 'center' },
-    subtext: { fontSize: 16, color: '#555', marginBottom: 25, lineHeight: 24, textAlign: 'center' },
-    input: { width: '100%', borderWidth: 1, borderColor: '#EAEAEA', borderRadius: 10, padding: 15, fontSize: 16, marginBottom: 15 },
-    primaryButton: { width: '100%', backgroundColor: '#A3B899', borderRadius: 10, padding: 15, alignItems: 'center' },
-    primaryButtonText: { color: 'white', fontSize: 16, fontWeight: '500' },
-    secondaryButton: { width: '100%', backgroundColor: '#F0F0F0', borderRadius: 10, padding: 15, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-    secondaryButtonText: { color: '#3C3C3C', fontSize: 16, fontWeight: '500' },
-    divider: { marginVertical: 20, color: '#AAA', fontSize: 14 },
-    footerText: { marginTop: 20, fontSize: 12, color: '#AAA' },
-    tagContainer: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 25 },
-    tag: { paddingVertical: 10, paddingHorizontal: 15, borderRadius: 20, borderWidth: 1, borderColor: '#EAEAEA', backgroundColor: 'transparent' },
-    tagSelected: { paddingVertical: 10, paddingHorizontal: 15, borderRadius: 20, borderWidth: 1, borderColor: '#A3B899', backgroundColor: '#A3B899' },
-    tagText: { color: '#3C3C3C', fontSize: 14 },
-    tagTextSelected: { color: 'white', fontSize: 14 },
-    choiceContainer: { flexDirection: 'row', gap: 10, marginBottom: 25, width: '100%' },
-    choiceCard: { flex: 1, padding: 20, borderRadius: 10, borderWidth: 1, borderColor: '#EAEAEA', alignItems: 'center', gap: 8 },
-    choiceCardSelected: { borderColor: '#A3B899', backgroundColor: '#F0F5EE' },
-    choiceText: { fontSize: 12, color: '#3C3C3C' },
-    progressBarBackground: { height: 6, width: '100%', backgroundColor: '#EAEAEA', borderRadius: 3 },
-    progressBarFill: { height: 6, backgroundColor: '#A3B899', borderRadius: 3 },
-    questionBox: { marginVertical: 20, padding: 20, backgroundColor: 'white', borderRadius: 10, width: '100%', maxWidth: 400 },
-    questionText: { fontSize: 18, color: '#3C3C3C', textAlign: 'center' },
-    answerContainer: { flexDirection: 'column', gap: 10, width: '100%', maxWidth: 400 },
-    answerButton: { padding: 15, borderRadius: 10, borderWidth: 1, borderColor: '#EAEAEA', backgroundColor: 'white' },
-    answerButtonText: { color: '#3C3C3C', fontSize: 16 },
-    tagStatic: { paddingVertical: 8, paddingHorizontal: 15, borderRadius: 20, backgroundColor: '#F0F5EE', marginHorizontal: 5 },
-    tagStaticText: { color: '#59784D', fontSize: 14, fontWeight: '500' },
+    appContainer: {
+        flex: 1,
+        backgroundColor: '#FBF9F6'
+    },
+    screen: {
+        flex: 1,
+        width: '100%',
+        height: '100%'
+    },
+    image: {
+        width: 250,
+        height: 250,
+        resizeMode: 'contain'
+    },
+    centerContent: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20
+    },
+    tagline: {
+        marginTop: 24,
+        fontSize: 18,
+        color: '#3C3C3C',
+        textAlign: 'center',
+        paddingHorizontal: 40,
+        lineHeight: 27
+    },
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 25,
+        width: '100%',
+        maxWidth: 380,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 10,
+        elevation: 5
+    },
+    headline: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#3C3C3C',
+        marginBottom: 10,
+        textAlign: 'center'
+    },
+    subtext: {
+        fontSize: 16,
+        color: '#555',
+        marginBottom: 25,
+        lineHeight: 24,
+        textAlign: 'center'
+    },
+    input: {
+        width: '100%',
+        borderWidth: 1,
+        borderColor: '#EAEAEA',
+        color: '#333333',
+        borderRadius: 10,
+        padding: 15,
+        fontSize: 16,
+        marginBottom: 15
+    },
+    primaryButton: {
+        width: '100%',
+        backgroundColor: '#A3B899',
+        borderRadius: 10,
+        padding: 15,
+        alignItems: 'center'
+    },
+    primaryButtonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: '500'
+    },
+    secondaryButton: {
+        width: '100%',
+        backgroundColor: '#F0F0F0',
+        borderRadius: 10,
+        padding: 15,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    secondaryButtonText: {
+        color: '#3C3C3C',
+        fontSize: 16,
+        fontWeight: '500'
+    },
+    divider: {
+        marginVertical: 20,
+        color: '#AAA',
+        fontSize: 14
+    },
+    footerText: {
+        marginTop: 20,
+        fontSize: 12,
+        color: '#AAA'
+    },
+    tagContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 10,
+        marginBottom: 25
+    },
+    tag: {
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#EAEAEA',
+        backgroundColor: 'transparent'
+    },
+    tagSelected: {
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#A3B899',
+        backgroundColor: '#A3B899'
+    },
+    tagText: {
+        color: '#3C3C3C',
+        fontSize: 14
+    },
+    tagTextSelected: {
+        color: 'white',
+        fontSize: 14
+    },
+    choiceContainer: {
+        flexDirection: 'row',
+        gap: 10,
+        marginBottom: 25,
+        width: '100%'
+    },
+    choiceCard: {
+        flex: 1,
+        padding: 20,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#EAEAEA',
+        alignItems: 'center',
+        gap: 8
+    },
+    choiceCardSelected: {
+        borderColor: '#A3B899',
+        backgroundColor: '#F0F5EE'
+    },
+    choiceText: {
+        fontSize: 12,
+        color: '#3C3C3C'
+    },
+    progressBarBackground: {
+        height: 6,
+        width: '100%',
+        backgroundColor: '#EAEAEA',
+        borderRadius: 3
+    },
+    progressBarFill: {
+        height: 6,
+        backgroundColor: '#A3B899',
+        borderRadius: 3
+    },
+    questionBox: {
+        marginVertical: 20,
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        width: '100%',
+        maxWidth: 400
+    },
+    questionText: {
+        fontSize: 18,
+        color: '#3C3C3C',
+        textAlign: 'center'
+    },
+    answerContainer: {
+        flexDirection: 'column',
+        gap: 10,
+        width: '100%',
+        maxWidth: 400
+    },
+    answerButton: {
+        padding: 15,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#EAEAEA',
+        backgroundColor: 'white'
+    },
+    answerButtonText: {
+        color: '#3C3C3C',
+        fontSize: 16
+    },
+    tagStatic: {
+        paddingVertical: 8,
+        paddingHorizontal: 15,
+        borderRadius: 20,
+        backgroundColor: '#F0F5EE',
+        marginHorizontal: 5
+    },
+    tagStaticText: {
+        color: '#59784D',
+        fontSize: 14,
+        fontWeight: '500'
+    },
 });
 
 export default OnboardingFlow;

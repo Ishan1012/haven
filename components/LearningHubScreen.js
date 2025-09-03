@@ -140,34 +140,155 @@ const LearningHubScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#FBF9F6', paddingTop: 10 },
-  container: { padding: 20 },
-  header: { marginBottom: 20 },
-  headerTitle: { fontSize: 28, fontWeight: 'bold', color: '#3C3C3C', textAlign: 'center' },
-  section: { marginBottom: 30 },
-  sectionTitle: { fontSize: 18, fontWeight: '600', color: '#3C3C3C', marginBottom: 15 },
-  skillTree: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-  skillConnector: { width: 30, height: 2, backgroundColor: '#E5E7EB' },
-  moduleCard: { backgroundColor: '#FFFFFF', borderRadius: 12, padding: 16, marginBottom: 12, elevation: 2 },
-  moduleHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
-  moduleTitle: { fontSize: 16, fontWeight: '500', color: '#3C3C3C' },
-  progressBarContainer: { height: 8, backgroundColor: '#E5E7EB', borderRadius: 4, overflow: 'hidden' },
-  progressBarFill: { height: '100%', backgroundColor: '#A3B899' },
-  actionButton: { backgroundColor: '#FAD6A5', borderRadius: 8, padding: 12, marginTop: 5 },
-  actionButtonText: { color: '#7C2D12', fontSize: 14, fontWeight: '600', textAlign: 'center' },
-  statsContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
-  statItem: { backgroundColor: '#E8F0E5', color: '#59784D', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 8, fontSize: 14, fontWeight: '500' },
-  statValue: { fontWeight: 'bold' },
-  badgeContainer: { flexDirection: 'row', justifyContent: 'space-around', width: 100 },
-  badge: { alignItems: 'center', padding: 5 },
-  badgeName: { fontSize: 12, color: '#555', marginTop: 5, textAlign: 'center' },
-  demoControls: { marginBottom: 25, padding: 10, backgroundColor: '#F0F0F0', borderRadius: 8, width: 200 },
-  demoButtonContainer: { flexDirection: 'column', alignItems: 'center', gap: 8 },
-  demoLabel: { fontSize: 14, fontWeight: '500', marginBottom: 10 },
-  demoButton: { paddingVertical: 6, paddingHorizontal: 12, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 6, backgroundColor: '#FFFFFF', marginVertical: 3 },
-  demoButtonActive: { paddingVertical: 6, paddingHorizontal: 12, borderWidth: 1, borderColor: '#A3B899', borderRadius: 6, backgroundColor: '#E8F0E5' },
-  demoButtonText: { color: '#3C3C3C' },
-  demoButtonTextActive: { color: '#59784D', fontWeight: 'bold' },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FBF9F6',
+    paddingTop: 10
+  },
+  container: {
+    padding: 20
+  },
+  header: {
+    marginBottom: 20
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#3C3C3C',
+    textAlign: 'center'
+  },
+  section: {
+    marginBottom: 30
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#3C3C3C',
+    marginBottom: 15
+  },
+  skillTree: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  skillConnector: {
+    width: 30,
+    height: 2,
+    backgroundColor: '#E5E7EB'
+  },
+  moduleCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    elevation: 2
+  },
+  moduleHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12
+  },
+  moduleTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#3C3C3C'
+  },
+  progressBarContainer: {
+    height: 8,
+    backgroundColor: '#E5E7EB',
+    borderRadius: 4,
+    overflow: 'hidden'
+  },
+  progressBarFill: {
+    height: '100%',
+    backgroundColor: '#A3B899'
+  },
+  actionButton: {
+    backgroundColor: '#FAD6A5',
+    borderRadius: 8,
+    padding: 12,
+    marginTop: 5
+  },
+  actionButtonText: {
+    color: '#7C2D12',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center'
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20
+  },
+  statItem: {
+    backgroundColor: '#E8F0E5',
+    color: '#59784D',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    fontSize: 14,
+    fontWeight: '500'
+  },
+  statValue: {
+    fontWeight: 'bold'
+  },
+  badgeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: 100
+  },
+  badge: {
+    alignItems: 'center',
+    padding: 5
+  },
+  badgeName: {
+    fontSize: 12,
+    color: '#555',
+    marginTop: 5,
+    textAlign: 'center'
+  },
+  demoControls: {
+    marginBottom: 25,
+    padding: 10,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 8,
+    width: 200
+  },
+  demoButtonContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 8
+  },
+  demoLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    marginBottom: 10
+  },
+  demoButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 6,
+    backgroundColor: '#FFFFFF',
+    marginVertical: 3
+  },
+  demoButtonActive: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: '#A3B899',
+    borderRadius: 6,
+    backgroundColor: '#E8F0E5'
+  },
+  demoButtonText: {
+    color: '#3C3C3C'
+  },
+  demoButtonTextActive: {
+    color: '#59784D',
+    fontWeight: 'bold'
+  },
 });
 
 export default LearningHubScreen;

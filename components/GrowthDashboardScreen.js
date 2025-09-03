@@ -1,6 +1,12 @@
-import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { SafeAreaView, ScrollView, View, Text, StyleSheet, Dimensions } from 'react-native';
 import Svg, { Circle, Polyline, Text as SvgText } from 'react-native-svg';
+import Animated, {
+  useSharedValue,
+  useAnimatedProps,
+  withTiming,
+  Easing,
+} from "react-native-reanimated";
 
 const BadgeIcon = ({ achieved, color, name }) => (
   <View style={styles.badgeItem}>
@@ -43,14 +49,73 @@ const achievements = [
   { name: 'Mindful Pro', achieved: false }
 ];
 
+const { width } = Dimensions.get("window");
+
+const AnimatedPolyline = Animated.createAnimatedComponent(Polyline);
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
 const MoodChart = ({ data }) => {
-  const points = data.map(p => `${p.x},${100 - p.y * 10}`).join(' ');
+  const lineLength = useSharedValue(0);
+
+  const strokeDasharray = width; 
+
+  useEffect(() => {
+    lineLength.value = withTiming(1, {
+      duration: 20000,
+      easing: Easing.out(Easing.exp),
+    });
+  }, []);
+
+  const points = data
+    .map((p) => `${p.x},${100 - p.y * 10}`)
+    .join(" ");
+
+  const animatedProps = useAnimatedProps(() => {
+    return {
+      strokeDashoffset: strokeDasharray * (1 - lineLength.value),
+    };
+  });
+
   return (
     <Svg height="120" width="100%">
-      <Polyline points={points} fill="none" stroke="#A9C4D4" strokeWidth="3" />
-      {data.map(p => (
-        <Circle key={p.x} cx={p.x} cy={100 - p.y * 10} r="4" fill="#A9C4D4" stroke="#FBF9F6" strokeWidth="2" />
-      ))}
+      <AnimatedPolyline
+        points={points}
+        fill="none"
+        stroke="#A9C4D4"
+        strokeWidth="3"
+        strokeDasharray={strokeDasharray}
+        animatedProps={animatedProps}
+      />
+
+      {data.map((p, i) => {
+        const cx = p.x;
+        const cy = 100 - p.y * 10;
+
+        const circleScale = useSharedValue(0);
+        useEffect(() => {
+          circleScale.value = withTiming(1, {
+            duration: 500,
+            delay: i * 150,
+            easing: Easing.out(Easing.exp),
+          });
+        }, []);
+
+        const circleProps = useAnimatedProps(() => ({
+          r: 4 * circleScale.value,
+        }));
+
+        return (
+          <AnimatedCircle
+            key={p.x}
+            cx={cx}
+            cy={cy}
+            fill="#A9C4D4"
+            stroke="#FBF9F6"
+            strokeWidth="2"
+            animatedProps={circleProps}
+          />
+        );
+      })}
     </Svg>
   );
 };
@@ -132,29 +197,138 @@ const GrowthDashboardScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  headerTitle: { fontSize: 28, fontWeight: 'bold', color: '#3C3C3C', textAlign: 'center', marginBottom: 20 },
-  card: { backgroundColor: '#FFFFFF', borderRadius: 16, padding: 20, marginBottom: 15, elevation: 2 },
-  cardTitle: { fontSize: 18, fontWeight: '600', color: '#3C3C3C', marginBottom: 15 },
-  gamificationContainer: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#E8F0E5', borderRadius: 16, padding: 15, marginBottom: 15 },
-  streakCounter: { alignItems: 'center' },
-  streakValue: { fontSize: 24, fontWeight: 'bold', color: '#59784D' },
-  streakLabel: { fontSize: 12, color: '#59784D' },
-  milestoneProgress: { flex: 1, marginLeft: 15 },
-  milestoneLabel: { fontSize: 12, color: '#59784D', marginBottom: 6 },
-  progressBarContainer: { height: 8, backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: 4 },
-  progressBarFill: { height: '100%', backgroundColor: '#FFFFFF', borderRadius: 4 },
-  insightText: { fontSize: 15, color: '#555', lineHeight: 22 },
-  scoreChartContainer: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 25, alignItems: 'flex-end', height: 100 },
-  scoreBarItem: { alignItems: 'center' },
-  scoreBarBackground: { width: 30, height: 100, backgroundColor: '#F0F0F0', borderRadius: 6, justifyContent: 'flex-end' },
-  scoreBarFill: { width: '100%', backgroundColor: '#A3B899', borderRadius: 6 },
-  scoreBarLabel: { fontSize: 12, color: '#555', marginTop: 8 },
-  wordCloud: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' },
-  badgeItem: { alignItems: 'center', marginRight: 15 },
-  badgeName: { fontSize: 12, color: '#555', marginTop: 5 },
-  bottomNav: { position: 'absolute', bottom: 0, left: 0, right: 0, flexDirection: 'row', backgroundColor: '#FFFFFF', borderTopWidth: 1, borderColor: '#F0F0F0', padding: 12, justifyContent: 'space-around' },
-  navButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#A3B899', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 25 },
-  navButtonText: { color: '#FFFFFF', fontSize: 14, fontWeight: '600', marginLeft: 8 }
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#3C3C3C',
+    textAlign: 'center',
+    marginBottom: 20
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 15,
+    elevation: 2
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#3C3C3C',
+    marginBottom: 15
+  },
+  gamificationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#E8F0E5',
+    borderRadius: 16,
+    padding: 15,
+    marginBottom: 15
+  },
+  streakCounter: {
+    alignItems: 'center'
+  },
+  streakValue: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#59784D'
+  },
+  streakLabel: {
+    fontSize: 12,
+    color: '#59784D'
+  },
+  milestoneProgress: {
+    flex: 1,
+    marginLeft: 15
+  },
+  milestoneLabel: {
+    fontSize: 12,
+    color: '#59784D',
+    marginBottom: 6
+  },
+  progressBarContainer: {
+    height: 8,
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    borderRadius: 4
+  },
+  progressBarFill: {
+    height: '100%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 4
+  },
+  insightText: {
+    fontSize: 15,
+    color: '#555',
+    lineHeight: 22
+  },
+  scoreChartContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 25,
+    alignItems: 'flex-end',
+    height: 100
+  },
+  scoreBarItem: {
+    alignItems: 'center'
+  },
+  scoreBarBackground: {
+    width: 30,
+    height: 100,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 6,
+    justifyContent: 'flex-end'
+  },
+  scoreBarFill: {
+    width: '100%',
+    backgroundColor: '#A3B899',
+    borderRadius: 6
+  },
+  scoreBarLabel: {
+    fontSize: 12,
+    color: '#555',
+    marginTop: 8
+  },
+  wordCloud: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
+  },
+  badgeItem: {
+    alignItems: 'center',
+    marginRight: 15
+  },
+  badgeName: {
+    fontSize: 12,
+    color: '#555',
+    marginTop: 5
+  },
+  bottomNav: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderTopWidth: 1,
+    borderColor: '#F0F0F0',
+    padding: 12,
+    justifyContent: 'space-around'
+  },
+  navButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#A3B899',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 25
+  },
+  navButtonText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: 8
+  }
 });
 
 export default GrowthDashboardScreen;

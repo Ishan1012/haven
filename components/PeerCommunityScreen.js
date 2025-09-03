@@ -143,10 +143,25 @@ const GroupCard = ({ item }) => (
 );
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#FBF9F6', paddingTop: 15 },
-  container: { flex: 1, paddingHorizontal: 20, paddingTop: 10 },
-  header: { marginBottom: 20 },
-  headerTitle: { fontSize: 28, fontWeight: 'bold', color: '#3C3C3C', textAlign: 'center' },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FBF9F6',
+    paddingTop: 15
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 10
+  },
+  header: {
+    marginBottom: 20
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#3C3C3C',
+    textAlign: 'center'
+  },
   navContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -155,7 +170,11 @@ const styles = StyleSheet.create({
     padding: 4,
     marginBottom: 25,
   },
-  navButton: { flex: 1, paddingVertical: 10, borderRadius: 8 },
+  navButton: {
+    flex: 1,
+    paddingVertical: 10,
+    borderRadius: 8
+  },
   navButtonActive: {
     backgroundColor: '#FFFFFF',
     shadowColor: "#000",
@@ -164,9 +183,22 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
   },
-  navButtonText: { fontSize: 14, fontWeight: '500', color: '#555', textAlign: 'center' },
-  navButtonTextActive: { color: '#A3B899', fontWeight: 'bold' },
-  sectionTitle: { fontSize: 18, fontWeight: '600', color: '#3C3C3C', marginBottom: 15 },
+  navButtonText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#555',
+    textAlign: 'center'
+  },
+  navButtonTextActive: {
+    color: '#A3B899',
+    fontWeight: 'bold'
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#3C3C3C',
+    marginBottom: 15
+  },
   card: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
@@ -178,9 +210,24 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
-  cardTitle: { fontSize: 16, fontWeight: '500', color: '#3C3C3C', width: 150 },
-  cardDescription: { fontSize: 14, color: '#555', marginTop: 4, lineHeight: 20 },
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#3C3C3C',
+    width: 150
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: '#555',
+    marginTop: 4,
+    lineHeight: 20
+  },
   moderatedTag: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -189,8 +236,17 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 8,
   },
-  moderatedTagText: { marginLeft: 6, fontSize: 12, color: '#59784D', fontWeight: '500' },
-  statsContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
+  moderatedTagText: {
+    marginLeft: 6,
+    fontSize: 12,
+    color: '#59784D',
+    fontWeight: '500'
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20
+  },
   statItem: {
     backgroundColor: '#E8F0E5',
     color: '#59784D',
@@ -200,9 +256,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
-  badgeContainer: { paddingVertical: 10, flexDirection: 'row', gap: 20 },
-  badge: { alignItems: 'center', width: 80 },
-  badgeName: { fontSize: 12, color: '#555', marginTop: 5, textAlign: 'center' },
+  badgeContainer: {
+    paddingVertical: 10,
+    flexDirection: 'row',
+    gap: 20
+  },
+  badge: {
+    alignItems: 'center',
+    width: 80
+  },
+  badgeName: {
+    fontSize: 12,
+    color: '#555',
+    marginTop: 5,
+    textAlign: 'center'
+  },
   fab: {
     position: 'absolute',
     width: 56,
